@@ -56,13 +56,12 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
    
    
    <img align="center" src="img/adding-environment-variable.png">
-7. Add the Spring Boot starter data MongoDB dependency to your *build.gradle*:
-    ```groovy
-       dependencies {
-            implementation 'org.springframework.boot:spring-boot-starter-web'
-            implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-            testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        }
+7. Add the Spring Boot starter data MongoDB dependency to your *pom.xml*:
+    ```xml
+      <dependency>
+         <artifactId>spring-boot-starter-data-mongodb</artifactId>
+         <groupId>org.springframework.boot</groupId>
+      </dependency>
     ```
 8. Run your project and verify that the connection is successful.
 
