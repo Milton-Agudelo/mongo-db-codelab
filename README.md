@@ -47,7 +47,7 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
 4. Choose the *Java* driver, select the latest version and copy the *connection string*:
    <img align="center" src="img/java-driver.png">
 5. Replace the *password* on the *connection string* with the password used when creating your database user.
-6. Add an *Environment Variable* to the *application.properties* file to store the MongoDB URI:
+6. Download the project in the repo, open it on your IDE and add an *Environment Variable* to the *application.properties* file to store the MongoDB URI:
     ````properties
     spring.data.mongodb.uri=${MONGODB_URI}
     ````
