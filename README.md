@@ -167,7 +167,6 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
         List<User> findUsersWithNameOrLastNameLike(String queryText);
         
         List<User> findUsersCreatedAfter(Date startDate);
-      {}
      ```
  
 ***Tip***: take a look at the official documentation and learn how to create custom queries with [Spring Data](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.query-creation)
