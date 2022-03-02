@@ -163,7 +163,6 @@ If you haven't created your MongoDB Cluster follow part 1 - 4:
 ### Challenge Yourself: Implement complex queries using the Spring Data Query Methods
 1. Modify the *UserService* interface adding the following methods:
 
-   **Java:**
     ```java
         List<User> findUsersWithNameOrLastNameLike(String queryText);
         
