@@ -1,5 +1,8 @@
 package org.ada.school.user.controller.dto;
 
+import lombok.Getter;
+
+@Getter
 public class UserDto
 {
     String name;
@@ -10,20 +13,5 @@ public class UserDto
 
     public UserDto()
     {
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public String getEmail()
-    {
-        return email;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
     }
 }
