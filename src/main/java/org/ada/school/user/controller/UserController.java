@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.ListIterator;
 
 
 @RestController
@@ -28,30 +30,36 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDocument>> all() {
-        return ResponseEntity.ok(iUserService.all());
+    public ResponseEntity<List<UserDto>> all() {
+        List<UserDocument> userDocumentList = iUserService.all();
+        List userDtoList = new ArrayList();
+        ListIterator listIterator = userDocumentList.listIterator();
+        while (listIterator.hasNext()) {
+            userDtoList.add(new UserDto((UserDocument) listIterator.next()));
+        }
+        return ResponseEntity.ok(userDtoList);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDocument> findById(@PathVariable String id) {
+    public ResponseEntity<UserDto> findById(@PathVariable String id) {
         ResponseEntity responseEntity = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("User with id: '" + id + "' can not be found!");
         try {
-            responseEntity = ResponseEntity.status(HttpStatus.OK).body(iUserService.findById(id));
+            responseEntity = ResponseEntity.status(HttpStatus.OK).body(new UserDto(iUserService.findById(id)));
         }  finally {
             return responseEntity;
         }
     }
 
     @PostMapping
-    public ResponseEntity<UserDocument> create(@RequestBody UserDto userDto) {
-        return ResponseEntity.ok(iUserService.create(new UserDocument(userDto)));
+    public ResponseEntity<UserDto> create(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok((new UserDto(iUserService.create(new UserDocument(userDto)))));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<UserDocument> update(@PathVariable String id, @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> update(@PathVariable String id, @RequestBody UserDto userDto) {
         ResponseEntity responseEntity = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("User with id: '" + id + "' can not be found!");
-        if (iUserService.update(id, userDto)) {
-            responseEntity = ResponseEntity.status(HttpStatus.OK).body(iUserService.findById(id));
+        if (iUserService.update(id, new UserDocument(userDto))) {
+            responseEntity = ResponseEntity.status(HttpStatus.OK).body(new UserDto(iUserService.findById(id)));
         }
 
         return responseEntity;

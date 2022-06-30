@@ -44,9 +44,8 @@ public class UserServiceMongoDb implements IUserService {
         return result;
     }
 
-    public boolean update(String id, UserDto userDto) {
+    public boolean update(String id, UserDocument userDocument) {
         boolean result = false;
-        UserDocument userDocument = new UserDocument(userDto);
         Optional<UserDocument> userToUpdate = iUserRepository.findById(id);
         if (!userToUpdate.equals(Optional.empty())) {
             userDocument.setId(id);
