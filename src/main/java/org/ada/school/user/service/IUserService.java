@@ -16,5 +16,5 @@ public interface IUserService {
 
     boolean deleteById( String id );
 
-    boolean update(String id, UserDto userDto);
+    boolean update(String id, UserDocument userDocument);
 }

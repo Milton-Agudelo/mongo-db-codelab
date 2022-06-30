@@ -1,17 +1,23 @@
 package org.ada.school.user.controller.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.ada.school.user.repository.UserDocument;
+
+import java.util.Date;
 
 @Getter
+@AllArgsConstructor
 public class UserDto
 {
-    String name;
+    private String id;
+    private String name;
+    private String lastName;
+    private int age;
+    private String email;
+    private Date date;
 
-    String email;
-
-    String lastName;
-
-    public UserDto()
-    {
+    public UserDto(UserDocument userDocument) {
+        this(userDocument.getId(), userDocument.getName(), userDocument.getLastName(), userDocument.getAge(), userDocument.getEmail(), userDocument.getCreatedAt());
     }
 }
